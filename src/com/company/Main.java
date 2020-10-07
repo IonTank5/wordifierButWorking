@@ -24,8 +24,10 @@ public class Main {
             String word1, word2; // word1 is the word being replaced, word2 is the word replacing it
             System.out.println("Enter word to replace: ");
             word1 = in.next();
+            in.nextLine();
             System.out.println("Enter word to replace " + word1 + " with: ");
-            word2 = in.next();
+            word2 = in.nextLine();
+            int counter = 0, tries = 0;
             while(read.hasNext()){ //Checks if there is another word in the file
                 String temp = "";
                 String wordChecker = "";
@@ -39,12 +41,18 @@ public class Main {
                     if (wordChecker.toString().equalsIgnoreCase(word1)){
                         System.out.print(temp.substring(0, i) + word2+ temp.substring(i + word1.length()) + " ");
                         checker = true;
+                        counter++;
                         break;
                     }
                 }
                 if(checker == false)
                     System.out.print(temp + " ");
+                tries++;
+                if(tries%40==0){
+                    System.out.println();
+                }
             }
+            System.out.println("\n" + counter + " changes made");
         } catch (Exception e) {
             System.out.println(e.toString());
         }
